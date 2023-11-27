@@ -1,0 +1,85 @@
+<form [formGroup]="filter">
+  <div class="container-fluid text-center">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-6 py-3">
+        <mat-form-field class="search-bar">
+          <mat-label>Search News</mat-label>
+          <input matInput placeholder="Seach News" formControlName="keyword" />
+        </mat-form-field>
+        <button mat-raised-button (click)="searchByDateNSource()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input
+        [formGroup]="filter.controls.range"
+        [rangePicker]="picker"
+      >
+        <input matStartDate formControlName="from" placeholder="From" />
+        <input
+          matEndDate
+          formControlName="to"
+          placeholder="To"
+          (dateInput)="searchByDateNSource()"
+        />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field class="px-2">
+      <mat-label>Source</mat-label>
+      <mat-select formControlName="source" (change)="searchByDateNSource()">
+        <mat-option
+          *ngFor="let source of sources"
+          [value]="source.id"
+          (click)="searchByDateNSource()"
+          >{{ source.name }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="filter.get('source').hasError('required')">
+        Source is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="px-2">
+      <mat-label>Sort by</mat-label>
+      <mat-select formControlName="date" (change)="dateFilter()">
+        <mat-option
+          *ngFor="let d of dates"
+          [value]="d"
+          (click)="dateFilter()"
+          >{{ d }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
+
+<!-- NO News Available Message -->
+<div class="container text-center" *ngIf="pageSlice?.length === 0">
+  <p class="fs-2 fw-bolder lh-base">No News available with the given filter</p>
+</div>
+
+<!-- Articles -->
+<div class="container">
+  <div *ngFor="let eachnews of pageSlice">
+    <app-news-article [news]="eachnews"></app-news-article>
+  </div>
+</div>
+
+<!-- Paginator -->
+<div>
+  <mat-paginator
+    [length]="this.news?.length"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true"
+    (page)="handlePage($event)"
+  >
+  </mat-paginator>
+</div>

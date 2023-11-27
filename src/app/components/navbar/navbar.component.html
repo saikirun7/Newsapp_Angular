@@ -1,0 +1,102 @@
+<div>
+  <mat-toolbar>
+    <span class="icon">N</span>EWSAPP
+    <span class="space"> </span>
+    <button
+      mat-button
+      class="login-button"
+      *ngIf="router.url === '/register'"
+      routerLink="/login"
+    >
+      Login
+    </button>
+    <button
+      mat-button
+      class="register-button"
+      *ngIf="router.url === '/login'"
+      routerLink="/register"
+    >
+      Register
+    </button>
+    <!-- Menu -->
+    <div class="nav-menu">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="beforeMenu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button
+          mat-menu-item
+          *ngIf="router.url !== '/login' && router.url !== '/register'"
+          (click)="goToDashboard()"
+        >
+          Dashboard
+        </button>
+
+        <button
+          mat-menu-item
+          *ngIf="router.url !== '/login' && router.url !== '/register'"
+          (click)="goToOldNews()"
+        >
+          Old News
+        </button>
+
+        <button
+          mat-menu-item
+          *ngIf="router.url !== '/login' && router.url !== '/register'"
+          (click)="goToFavourites()"
+        >
+          BookMarks
+        </button>
+
+        <button
+          mat-menu-item
+          *ngIf="router.url !== '/login' && router.url !== '/register'"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+    <!-- buttons -->
+    <div class="nav-buttons">
+      <button
+        mat-button
+        class="mx-1"
+        *ngIf="router.url !== '/login' && router.url !== '/register'"
+        (click)="goToDashboard()"
+      >
+      <mat-icon>dashboard</mat-icon> Dashboard
+      </button>
+      <button
+        mat-button
+        class="mx-1"
+        *ngIf="router.url !== '/login' && router.url !== '/register'"
+        (click)="goToOldNews()"
+      >
+        <mat-icon> import_contacts</mat-icon> Old News
+      </button>
+
+      <button
+        mat-button
+        class="mx-1"
+        *ngIf="router.url !== '/login' && router.url !== '/register'"
+        (click)="goToFavourites()"
+      >
+      <mat-icon>bookmark</mat-icon>BookMarks
+      </button>
+
+      <button
+        mat-button
+        class="mx-1"
+        *ngIf="router.url !== '/login' && router.url !== '/register'"
+        (click)="logout()"
+      >
+        Logout
+      </button>
+    </div>
+  </mat-toolbar>
+</div>

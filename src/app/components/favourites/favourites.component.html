@@ -1,0 +1,27 @@
+<div class="container pt-3">
+  <p class="fs-3 fw-bolder">Your Bookmarks</p>
+</div>
+
+<div class="container">
+   
+    <div *ngIf="favouriteNews.length === 0" class="text-center"> 
+    <img src="../../../assets/nodata.jpg" style="max-height: 500px;" alt="" class="img-fluid">
+    <h4>No Bookmark Found! Add News To Bookmark</h4>    
+</div>
+
+    <div *ngFor="let news of paginationNews">
+        <app-news-article [news]="news" (deleteEventChild)="deleteEventparent()"></app-news-article>
+    </div>
+<!-- Pagination -->
+<div>
+    <mat-paginator
+      [length]="this.favouriteNews?.length"
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true"
+      (page)="handlePage($event)"
+    >
+    </mat-paginator>
+  </div>
+
+</div>

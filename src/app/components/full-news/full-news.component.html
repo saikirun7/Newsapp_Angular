@@ -1,0 +1,67 @@
+<div class="container">
+  <!-- <p class="display-3 font-weight-bold">{{ newsArticle?.title }}</p> -->
+  <p class="fw-bolder fs-3 lh-base">{{ newsArticle?.title }}</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <span class="text-muted"
+        >By {{ newsArticle?.author }}, {{ newsArticle?.source?.name }}</span
+      >
+    </div>
+
+    <div class="col-md-4 offset-4">
+      <span class="text-muted"
+        >Published at: {{ newsArticle?.publishedAt | date: "medium" }}</span
+      >
+    </div>
+  </div>
+  <hr />
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <p class="fs-6 lh-base">{{ newsArticle?.description }}</p>
+    </div>
+
+    <div class="col-md-2">
+      <a
+        href="{{ newsArticle?.url }}"
+        role="button"
+        class="btn btn-outline-primary"
+        >Open News</a
+      >
+    </div>
+  </div>
+</div>
+
+<br />
+<div class="container text-center">
+  <img
+    [src]="newsArticle?.urlToImage"
+    class="img-fluid rounded"
+    style="max-height: 450px"
+  />
+</div>
+
+<br />
+<!-- <div>
+  <a href="{{ newsArticle?.url }}" role="button" class="btn btn-outline-primary">Open In news portal</a>
+</div> -->
+
+<div class="container">
+  <div *ngFor="let number of [0]">
+    <p class="fs-5 lh-base">
+      {{ newsArticle?.content | slice: 0:188 }} Lorem ipsum dolor sit amet
+      consectetur adipisicing elit igendi facere magnam molestiae corru
+      epellendus, cumque dolor unde aliquam nam non nihil quis? Nemo consectetur
+      similique labore dolorem nesciunt at asperiores incidunt cum dolorum
+      impedit ipsum, autem quis fuga reprehenderit voluptatem hic beatae iste.
+      Natus, fugit quisquam. Provident, perspiciatis? Ratione beatae commodi quo
+      asperiores esse nam error odit accusantium id. Nulla totam, saepe eum
+      dolore laborum deleniti sint animi fugiat nihil nobis rem dicta.
+    </p>
+  </div>
+</div>

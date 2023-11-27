@@ -1,0 +1,93 @@
+<div class="register-form">
+  <p class="register-head">Register</p>
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Name"
+        required
+        formControlName="name"
+        id="nameInput"
+      />
+      <mat-error *ngIf="registerForm.get('email').hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        placeholder="Emai Id"
+        required
+        formControlName="email"
+        id="emailInput"
+      />
+      <mat-error *ngIf="registerForm.get('email').hasError('email')"
+        >Please enter a valid email</mat-error
+      >
+      <mat-error *ngIf="registerForm.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        [type]="passwordHide ? 'password' : 'text'"
+        matInput
+        placeholder="Password"
+        required
+        formControlName="password"
+        id="passwordInput"
+      />
+      <mat-icon
+        class="password-eye"
+        matSuffix
+        (click)="passwordHide = !passwordHide"
+        >{{ passwordHide ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-error *ngIf="registerForm.get('password').hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input
+        [type]="confirmPasswordHide ? 'password' : 'text'"
+        matInput
+        placeholder="Confirm Password"
+        required
+        formControlName="confirmPassword"
+        id="confirmPasswordInput"
+      />
+      <mat-icon
+        matSuffix
+        class="password-eye"
+        (click)="confirmPasswordHide = !confirmPasswordHide"
+        >{{ confirmPasswordHide ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-error
+        *ngIf="registerForm.get('confirmPassword').hasError('required')"
+      >
+        Confirm Password is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="registerForm.get('confirmPassword').hasError('mismatch')"
+      >
+        Passwords did not <strong>match</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <div class="register-btn">
+      <button mat-raised-button type="submit">Register</button>
+    </div>
+  </form>
+</div>

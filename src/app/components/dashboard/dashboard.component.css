@@ -1,0 +1,8 @@
+@media screen and (max-width: 500px) {
+  mat-form-field {
+    width: 100%;
+  }
+}
+span {
+  background-color: #314650;
+}

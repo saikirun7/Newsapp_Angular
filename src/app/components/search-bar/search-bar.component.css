@@ -1,0 +1,8 @@
+button {
+  background-color: #314650;
+  color: white;
+}
+mat-form-field {
+  width: 80%;
+  padding-right: 1rem;
+}

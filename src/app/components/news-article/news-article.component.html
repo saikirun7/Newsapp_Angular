@@ -1,0 +1,66 @@
+<div>
+  <div class="py-3 my-5 rounded-3 shadow bg-body">
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-3 text-center">
+        <img
+          [src]="news.urlToImage"
+          height="300"
+          width="300"
+          class="image px-2"
+          alt="No Image Found"
+          style ="max-width: 100%;"
+        />
+      </div>
+      <div class="col-sm-12 col-md-8 col-lg-9">
+        <div class="container">
+          <p class="fw-bolder fs-3 lh-base">{{ news.title }}</p>
+          <p>
+            <strong>Description : </strong
+            >{{ news.description?.substring(0, 200) + "..." }}
+          </p>
+          <p><strong>Author : </strong>{{ news.author }}</p>
+          <p class="text-muted publishedAt">
+            <mat-icon class="clock">query_builder</mat-icon
+            ><span>{{ moment(news.publishedAt).fromNow() }}</span>
+          </p>
+          <div class="buttons">
+            <button
+              class="custom-btn btn btn-sm"
+              (click)="moveToFullArticle(news)"
+            >
+              Read Full Article
+            </button>
+
+            <!-- <div *ngIf="!news?.isBookmarked"> -->
+            <div
+              *ngIf="router.url === '/dashboard' || router.url === '/old-news'"
+            >
+              <mat-icon
+                *ngIf="!bookmark"
+                (click)="addToBookmark(news)"
+                class="fs-1 bookmark"
+                >bookmark_border</mat-icon
+              >
+              <mat-icon
+                *ngIf="bookmark"
+                (click)="addToBookmark(news)"
+                class="fs-1 bookmark"
+                >bookmark</mat-icon
+              >
+
+              <!-- </div> -->
+            </div>
+            <div *ngIf="router.url === '/bookmarks'">
+              <button
+                class="btn btn-outline-danger btn-sm"
+                (click)="deleteFromBookmark(news)"
+              >
+                Remove From Bookmark
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+@media screen and (max-width: 500px) {
+  mat-form-field {
+    width: 100%;
+  }
+  .search-bar {
+    width: 80%;
+    padding-right: 1rem;
+  }
+}
+
+.search-bar {
+  width: 80%;
+  padding-right: 1rem;
+}
+button {
+  background-color: #2a403d;
+  color: white;
+}

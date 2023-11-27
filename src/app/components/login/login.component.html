@@ -1,0 +1,47 @@
+<div class="login-form">
+  <p class="login-head">Login</p>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        id="emailInput"
+        type="email"
+        matInput
+        placeholder="Emai Id"
+        required
+        formControlName="email"
+      />
+      <mat-error *ngIf="loginForm.get('email').hasError('email')"
+        >Please enter a valid email</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        [type]="passwordHide ? 'password' : 'text'"
+        matInput
+        placeholder="Password"
+        required
+        formControlName="password"
+        id="passwordInput"
+      />
+      <mat-icon
+        class="password-eye"
+        matSuffix
+        (click)="passwordHide = !passwordHide"
+        >{{ passwordHide ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-error *ngIf="loginForm.get('password').hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <div class="login-btn">
+      <button mat-raised-button type="submit">Login</button>
+    </div>
+  </form>
+</div>

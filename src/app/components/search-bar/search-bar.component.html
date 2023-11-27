@@ -1,0 +1,9 @@
+<div>
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <mat-form-field>
+      <mat-label>Search News</mat-label>
+      <input matInput placeholder="Seach News" formControlName="search" />
+    </mat-form-field>
+    <button mat-raised-button><mat-icon>search</mat-icon></button>
+  </form>
+</div>
